@@ -1,0 +1,196 @@
+\documentclass[oneside,11pt,letter]{article}
+% General include (DO NOT MODIFY)
+\include{cs446include}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%CHANGE
+%.   to booklet to print the problems only
+%
+%    to both to print problems and solutions
+%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\type}{booklet}
+%\newcommand{\type}{both}
+
+% Custom adjustments (CHANGE THIS FILE FOR ADDITIONAL ADJUSTMENTS)
+\include{cs446custom}
+
+%************************************************************************
+%                                                                       *
+%            End of preamble and beginning of text.                     *
+%                                                                       *
+%************************************************************************
+
+\begin{document}
+%------------------------- Title Page ----------------------------------
+\thispagestyle{empty}
+\baselineskip2.5ex
+{\bf University of Illinois}
+\hfill
+Spring 2018
+
+{\Large
+\begin{center}
+{\sf CS\,446: Machine Learning}\\ Homework 5\\
+\end{center}
+}
+{\large
+\begin{center}
+{\color{red}Due on Tuesday, February 20, 2018, 11:59 a.m. Central Time}
+\end{center}
+}
+
+\ifthenelse{\equal{\type}{booklet}}{}{}
+
+\ifthenelse{\equal{\type}{booklet}}{
+	\input{multiclass_StudentSolution} %The students have to fill this file to print the solution
+}{
+	\input{multiclass_OurSolution} %This file will not be provided to students since it contains the solution
+}
+
+\begin{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  BEGINNING OF PROBLEMS LIST
+
+\examproblem{6}{Multiclass Classification Basics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  BEGINNING OF SUBPROBLEMS LIST
+\begin{enumerate}
+	
+	\examproblempart{Which of the following is the most suitable application for multiclass classification? Which is the most suitable application for binary classification?
+	\begin{enumerate}
+		\item Predicting tomorrow's stock price;
+		\item Recognizing flower species from photos;
+		\item Deciding credit card approval for a bank;
+		\item Assigning captions to pictures.	
+	\end{enumerate}
+	}
+
+	% Solution box
+	\framebox[14.7cm][l]{
+		\begin{minipage}[b]{14.3cm}
+			
+			\inbooklet{Your answer: \studSolAA}
+			
+			\solution{\solAA}
+			
+		\end{minipage}
+		
+	}
+
+	\examproblempart{Suppose in an $n$-dimensional Euclidean space where $n\geq 3$, we have $n$ samples $x^{(i)}=e_i$ for $i=1...n$ (which means $x^{(1)}=(1,0,...,0)_n, x^{(2)}=(0,1,...,0)_n, ..., x^{(n)}=(0,0,...,1)_n$), with $x^{(i)}$ having class $i$. What are the numbers of binary SVM classifiers we need to train, to get 1-vs-all and 1-vs-1 multiclass classifiers?}
+	
+	% Solution box
+	\framebox[14.7cm][l]{
+		\begin{minipage}[b]{14.3cm}
+			
+			\inbooklet{Your answer: \studSolAB}
+			
+			\solution{\solAB}
+			
+		\end{minipage}
+		
+	}
+
+	\examproblempart{Suppose we have trained a 1-vs-1 multiclass classifier from binary SVM classifiers on the samples of the previous question. What are the regions in the Euclidean space that will receive the same number of majority votes from more than one classes? You can ignore samples on the decision boundary of any binary SVM.}
+	
+	% Solution box
+	\framebox[14.7cm][l]{
+		\begin{minipage}[b]{14.3cm}
+			
+			\inbooklet{Your answer: \studSolAC}
+			
+			\solution{\solAC}
+			
+		\end{minipage}
+		
+	}
+	
+	%%%%%%%%%%%% END OF SUBPROBLEMS LIST
+	
+\end{enumerate}
+
+\bookletpage
+\examproblem{8}{Multiclass SVM}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  BEGINNING OF SUBPROBLEMS LIST
+\begin{enumerate}
+	Consider the objective function of multiclass SVM as
+	$$\min_{w,\xi^{(i)}\geq 0}\frac{C}{2}\|w\|^2 + \sum_{i=1}^n\xi^{(i)}$$ $$ \text{s.t.} \quad w_{y^{(i)}}\phi(x^{(i)}) - w_{\hat{y}}\phi(x^{(i)}) \geq 1 - \xi^{(i)} \quad\forall i=1...n, \hat{y}=0...K-1,\hat{y}\neq y_i$$
+	Let $n=K=3$, $d=2$, $x^{(1)} = (0, -1)$, $x^{(2)} = (1, 0), x^{(3)} = (0, 1), y^{(1)} = 0, y^{(2)} = 1, y^{(3)} = 2$, and $\phi(x)=x$.
+	\examproblempart{
+		Rewrite the objective function with $w$ being a $Kd$-dimensional vector $(w_1,w_2,w_3,w_4,w_5,w_6)^\top$ and with the specific choices of $x$, $y$ and $\phi$.
+	}
+
+	% Solution box
+	\framebox[14.7cm][l]{
+		\begin{minipage}[b]{14.3cm}
+			
+			\inbooklet{Your answer: \studSolBA}
+			
+			\solution{\solBA}
+			
+		\end{minipage}
+		
+	}
+
+	\examproblempart{
+		Rewrite the objective function you get in (a) such that there are no slack variables $\xi^{(i)}$.
+	}
+
+	\framebox[14.7cm][l]{
+		\begin{minipage}[b]{14.3cm}
+			
+			\inbooklet{Your answer: \studSolBB}
+			
+			\solution{\solBB}
+			
+		\end{minipage}
+		
+	}
+
+	\examproblempart{
+		Let $w_t=(1,1,1,2,1,-1)^\top$. Compute the derivative of the objective function you get in (b) w.r.t. $w_2$, at $w_t$, where $w_2$ is the weight of second dimension on Class 0 (in case you used non-conventional definition of $w$ in (a)).
+	}
+
+	\framebox[14.7cm][l]{
+		\begin{minipage}[b]{14.3cm}
+			
+			\inbooklet{Your answer: \studSolBC}
+			
+			\solution{\solBC}
+			
+		\end{minipage}
+		
+	}
+	
+	\examproblempart{
+		Prove that
+		$$\max_{\hat{y}}\left(1+w_{\hat{y}}^\top\phi(x)\right)=\lim_{\epsilon\rightarrow0}\epsilon\ln\sum_{\hat{y}}\exp\left(\frac{1 + w_{\hat{y}}^\top\phi(x)}{\epsilon}\right).$$
+	}
+
+	\framebox[14.7cm][l]{
+		\begin{minipage}[b]{14.3cm}
+			
+			\inbooklet{Your answer: \studSolBD}
+			
+			\solution{\solBD}
+			
+		\end{minipage}
+		
+	}
+
+	%%%%%%%%%%%% END OF SUBPROBLEMS LIST
+
+\end{enumerate}	
+
+\end{enumerate}
+\end{document}
+
+\grid
+\grid
+\grid
+\grid

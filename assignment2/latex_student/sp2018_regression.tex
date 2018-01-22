@@ -1,0 +1,137 @@
+% !TEX root = HW2.tex
+\ifthenelse{\equal{\type}{booklet}}{
+\input{sp2018_regression_StudentSolution} %The students have to fill this file to print the solution
+}{
+\input{sp2018_regression_OurSolution} %This file will not be provided to students since it contains the solution
+}
+
+% Problem Explanation:
+% - first argument is the number of points
+% - second argument is the title and the text
+\examproblem{6}{Linear Regression Basics\\
+Consider a linear model of the form $\hat{y}^{(i)} = \mathbf{w}^{\intercal}\mathbf{x}^{(i)} + b$, where $\mathbf{w}, \mathbf{x} \in \mathbb{R}^{K}$ and $b \in \mathbb{R}$. Next, we are given a training dataset, $\cD$ = 
+$\{(x^{(i)}, y^{(i)})\} $ denoting the corresponding input-target example pairs.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  BEGINNING OF SUBPROBLEMS LIST
+\begin{enumerate}
+
+% Subproblem description
+\examproblempart{What is the loss function, $\cL$, for training a linear regression model? (Don't forget the $\frac{1}{2}$)\\}
+% Solution box
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.7cm}
+
+\inbooklet{Your answer:
+\spEighteenRegressionOneA
+}
+
+\solution{\spEighteenRegressionOneA}
+\end{minipage}
+}
+
+\examproblempart{Compute $\frac{\partial \cL}{\partial \hat{y}^{(i)}}$.\\}
+% Solution box
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.7cm}
+
+\inbooklet{Your answer:
+\spEighteenRegressionOneB
+}
+
+\solution{\spEighteenRegressionOneB}
+\end{minipage}
+}
+
+\examproblempart{Compute $\frac{\partial \hat{y}^{(i)}}{\partial \mathbf{w}_k}$, where $\bf w_k$ denotes the $k^{th}$ element of $\mathbf{w}$.\\}
+% Solution box
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.7cm}
+
+\inbooklet{Your answer:
+\spEighteenRegressionOneC
+}
+
+\solution{\spEighteenRegressionOneC}
+\end{minipage}
+}
+
+\examproblempart{Putting the previous parts together, what is $\nabla_{\bf w} \cL$ ?\\}
+% Solution box
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.7cm}
+
+\inbooklet{Your answer:
+\spEighteenRegressionOneD
+}
+
+\solution{\spEighteenRegressionOneD}
+\end{minipage}
+}
+
+\examproblempart{Compute $\frac{\partial \cL}{\partial b}$.\\}
+% Solution box
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.7cm}
+
+\inbooklet{Your answer:
+\spEighteenRegressionOneE
+}
+
+\solution{\spEighteenRegressionOneE}
+\end{minipage}
+}
+
+\examproblempart{For convenience, we group $\bw$ and $b$ together into $\mathbf{u}$, then we denote $\bz = [\bx \;\;1]$. (\ie $\hat{y} = \mathbf{u}^{\intercal} [x, 1] = \mathbf{w}^{\intercal}x +b$). What are the optimal parameters $\mathbf{u}^*=[\mathbf{w}^*, b^*]$? Use the notation $\mathbf{Z} \in {\mathbb{R}^{|D| \times (K+1)}}$ and $\mathbf{y} \in \mathbb{R}^{|D|}$ in the answer. Where, each row of $\mathbf{Z}, \mathbf{y}$ denotes an example input-target pair in the dataset.\\}
+% Solution box
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.7cm}
+
+\inbooklet{Your answer:
+\spEighteenRegressionOneF
+}
+
+\solution{\spEighteenRegressionOneF}
+\end{minipage}
+}
+
+%%%%%%%%%%%% END OF SUBPROBLEMS LIST
+
+\end{enumerate}
+
+\examproblem{2}{Linear Regression Probabilistic Interpretation\\
+Consider that the input $x^{(i)} \in \mathbb{R}$ and target variable $y^{(i)} \in \mathbb{R}$ to have to following relationship.
+\[
+y^{(i)} = w\cdot x^{(i)} + \epsilon^{(i)}
+\]
+where, $\epsilon$ is independently and identically distributed according to a Gaussian distribution with zero mean and unit variance. 
+\begin{enumerate}
+\examproblempart{What is the conditional probability $p(y^{(i)} | x^{(i)}, w)$.\\}
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.7cm}
+
+\inbooklet{Your answer:
+\spEighteenRegressionTwoA
+}
+
+\solution{\spEighteenRegressionTwoA}
+\end{minipage}
+
+}
+
+\examproblempart{Given a dataset $\cD = \{(x^{(i)}, y^{(i)})\} $, what is the negative log likelihood of the dataset according to our model? (Simplify.) \\}
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.7cm}
+
+\inbooklet{Your answer:
+\spEighteenRegressionTwoB
+}
+
+\solution{\spEighteenRegressionTwoB}
+\end{minipage}
+
+}
+
+\end{enumerate}
+}

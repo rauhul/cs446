@@ -1,0 +1,120 @@
+% !TEX root = exam.tex
+\input{Backprop_StudentSolution} %The students have to fill this file to print the solution
+
+% Problem Explanation:
+% - first argument is the number of points
+% - second argument is the title and the text
+\examproblem{8}{Backpropagation
+}
+
+
+Consider the deep net in the figure below consisting of an input layer, an output layer, and a hidden layer. The feed-forward computations performed by the deep net are as follows: every input $a_{i}$ is multiplied by a set of fully-connected weights $u_{ij}$ connecting the input layer to the hidden layer. The resulting weighted signals are then summed and combined with a bias $e_{j}$. This results in the activation signal $z_{j}=e_{j}+\sum_{i}a_{i}u_{ij}$. The hidden layer applies activation function $g$ on $z_{j}$ resulting in the signal $b_{j}$.  In a similar fashion, the hidden layer activation signals $b_{j}$ are multiplied by the weights connecting the hidden layer to the output layer $w_{jk}$, a bias $f_{k}$ is added and the resulting signal $h_{k}$ is transformed by the output activation function $g$ to form the network output $c_{k}$. The loss between the desired target $t_{k}$ and the output $c_{k}$ is given by the MSE: $E= \frac{1}{2} \sum_{k} (c_{k}-t_{k})^{2}$, where $t_{k}$ denotes the ground truth signal corresponding to $c_{k}$. Training a neural network involves determining the set of parameters $\theta=\{\emph{U},\emph{W},\emph{e},\emph{f}\}$ that minimize $E$. This problem can be solved using gradient descent, which requires determining $\frac{\partial E}{\partial \theta}$ for all $\theta$ in the model.
+
+
+\begin{center}
+ \includegraphics[width=7cm]{fig/DeepNet.pdf}
+ \end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  BEGINNING OF SUBPROBLEMS LIST
+\begin{enumerate}
+
+% Subproblem description
+\examproblempart{ For $g(x)=\sigma(x)=\frac{1}{1+e^{-x}}$, compute the derivative $g'(x)$ of $g(x)$ as a function of $\sigma(x)$.}
+\bookletskip{0}   %in inches
+
+% Solution box 
+ \framebox[14.7cm][l]{
+ \begin{minipage}[b]{14.7cm}
+\inbooklet{Your answer: \backpropStudSolA}
+  
+ \solution{\backpropSolA}
+
+ \end{minipage}
+ }
+
+% Subproblem description
+\examproblempart{ We denote by $\delta_{k}=\frac{\partial E}{\partial h_{k}}$ the error signal of neuron $k$ in the second linear layer of the network. Compute $\delta_{k}$ as a function of $c_k$, $t_k$, $g'$ and $h_k$.\\ }
+\bookletskip{0}   %in inches
+
+% Solution box 
+ \framebox[14.7cm][l]{
+ \begin{minipage}[b]{14.7cm}
+\inbooklet{Your answer: \backpropStudSolB}
+  
+ \solution{\backpropSolB}
+
+ \end{minipage}
+ }
+
+% Subproblem description
+\examproblempart{ Compute $\frac{\partial E}{\partial w_{jk}}$. Use $\delta_k$ and $b_j$.\\}
+\bookletskip{0.0}   %in inches
+
+% Solution box 
+ \framebox[14.7cm][l]{
+ \begin{minipage}[b]{14.7cm}
+ \inbooklet{Your answer: \backpropStudSolC}
+  
+ \solution{\backpropSolC}
+  \end{minipage}
+  }
+
+% Subproblem description
+\examproblempart{Compute $\frac{\partial E}{\partial f_{k}}$. Use $\delta_{k}$.\\}
+\bookletskip{0.0}   %in inches
+
+% Solution box 
+ \framebox[14.7cm][l]{
+ \begin{minipage}[b]{14.7cm}
+ \inbooklet{Your answer: \backpropStudSolD}
+  
+ \solution{\backpropSolD}
+ \end{minipage}
+ }
+
+% Subproblem description
+\examproblempart{We denote by $\psi_{j}=\frac{\partial E}{\partial z_{j} }$ the error signal of neuron $j$ in the first linear layer of the network. Compute $\psi_{j}$ as a function of $\delta_{k}$, $w_{jk}$, $g'$ and $z_{j}$.\\ }
+\bookletskip{0}   %in inches
+
+% Solution box 
+ \framebox[14.7cm][l]{
+ \begin{minipage}[b]{14.7cm}
+ \inbooklet{Your answer: \backpropStudSolE}
+  
+ \solution{\backpropSolE}
+ \end{minipage}
+ }
+ 
+ 
+ % Subproblem description
+\examproblempart{Compute $\frac{\partial E}{\partial u_{ij}}$. Use $\psi_{j}$ and $a_i$.\\ }
+\bookletskip{0}   %in inches
+
+% Solution box 
+ \framebox[14.7cm][l]{
+ \begin{minipage}[b]{14.7cm}
+ \inbooklet{Your answer: \backpropStudSolF}
+  
+ \solution{\backpropSolF}
+ \end{minipage}
+ }
+ 
+ 
+  % Subproblem description
+\examproblempart{Compute $\frac{\partial E}{\partial e_{j}}$. Use $\psi_{j}$.\\ }
+\bookletskip{0}   %in inches
+
+% Solution box 
+ \framebox[14.7cm][l]{
+ \begin{minipage}[b]{14.7cm}
+ \inbooklet{Your answer: \backpropStudSolH}
+  
+ \solution{\backpropSolH}
+ \end{minipage}
+ }
+ 
+ 
+ %%%%%%%%%%%% END OF SUBPROBLEMS LIST
+
+\end{enumerate}

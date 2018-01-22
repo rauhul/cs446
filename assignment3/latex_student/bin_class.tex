@@ -1,0 +1,94 @@
+% !TEX root = HW3.tex
+\ifthenelse{\equal{\type}{booklet}}{
+\input{bin_class_StudentSolution} %The students have to fill this file to print the solution
+}{
+}
+
+% Problem Explanation:
+% - first argument is the number of points
+% - second argument is the title and the text
+\examproblem{15}{Binary Classifiers}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  BEGINNING OF SUBPROBLEMS LIST
+\begin{enumerate}
+
+% Subproblem description
+\examproblempart{In order to use a linear regression model for binary classification, how do we map the regression output $\mathbf{w}^\top \mathbf{x}$ to the class labels $y\in\{-1,1\}$? }
+
+% Solution box
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.7cm}
+
+\inbooklet{Your answer: \binStudSolA}
+
+\end{minipage}
+}
+
+
+
+% Subproblem description
+\examproblempart{ In logistic regression, the activation function $\operatorname{g}(a)=\frac{1}{1+e^{-a}}$ is called sigmoid. Then how do we map the sigmoid output $\operatorname{g}(\mathbf{w}^\top \mathbf{x})$ to binary class labels $y\in\{-1,1\}$?}
+
+% Solution box
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.7cm}
+
+\inbooklet{Your answer: \binStudSolB}
+
+\end{minipage}
+}
+
+
+
+% Subproblem description
+\examproblempart{
+Is it possible to write the derivative of the sigmoid function $\operatorname{g}$ w.r.t $a$, i.e. $\frac{\partial g}{\partial a}$, as a simple function of itself $\operatorname{g}$? If so, how?
+}
+
+% Solution box
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.5cm}
+
+\inbooklet{Your answer: \binStudSolC}
+
+\end{minipage}
+}
+
+
+% Subproblem description
+\examproblempart{
+Assume quadratic loss is used in the logistic regression together with the sigmoid function. Then the program becomes:
+        $$ \min_\mathbf{w} f(\mathbf{w}) := \frac{1}{2} \sum_i \left(y_i - \operatorname{g}(\mathbf{w}^\top \mathbf{x}_i) \right)^2 $$
+where $y\in\{0,1\}$. To solve it by gradient descent, what would be the $\mathbf{w}$ update equation?
+}
+
+% Solution box
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.5cm}
+
+\inbooklet{Your answer: \binStudSolD}
+
+\end{minipage}
+}
+
+
+% Subproblem description
+\examproblempart{
+Assume $y\in\{-1,1\}$. Consider the following program for logistic regression:
+        $$ \min_\mathbf{w} f(\mathbf{w}) := \sum_i \log\left(1 + \exp(-y^{(i)}\mathbf{w}^T\phi(x^{(i)}))\right).$$
+The above program for binary classification makes an assumption on the samples/data points. What is the assumption?}
+
+% Solution box
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.7cm}
+
+\inbooklet{Your answer: \binStudSolE}
+
+\end{minipage}
+}
+
+
+%%%%%%%%%%%% END OF SUBPROBLEMS LIST
+
+\end{enumerate}

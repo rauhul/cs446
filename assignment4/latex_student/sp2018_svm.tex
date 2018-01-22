@@ -1,0 +1,153 @@
+% !TEX root = HW4.tex
+\ifthenelse{\equal{\type}{booklet}}{
+\input{sp2018_svm_StudentSolution} %The students have to fill this file to print the solution
+}{
+\input{sp2018_svm_OurSolution} %This file will not be provided to students since it contains the solution
+}
+
+% Problem Explanation:
+% - first argument is the number of points
+% - second argument is the title and the text
+\examproblem{10}{SVM Basics\\
+Consider the following dataset $\cD$ in the two-dimensional space; $\bx^{(i)} \in \mathbb{R}^2$ and $y^{(i)} \in \{1, -1\}$
+\begin{table}	[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+$i$ & $\bx_1^{(i)}$ & $\bx_2^{(i)}$ & $y^{(i)}$\\
+\hline
+1 & -1 & 3& 1\\
+2 &  -2.5 & -3 & -1 \\
+3 & 2 & -3& -1\\
+4 & 4.7 & 5& 1\\
+5 & 4 & 3 & 1\\
+6 & -4.3& -4& -1 \\
+\hline
+\end{tabular}
+\end{table}
+}
+
+Recall a hard SVM is as follows:
+\begin{align}\label{eq:svm}
+\min\limits_{w, b} \frac{1}{2} \norm{\bw}^2 \;\;\;
+\text{s.t.} \;\; y^{(i)}(\bw^\intercal\bx^{(i)} + b \geq 1) \;\; ,\forall (x^{(i)}, y^{(i)}) \in \cD
+\end{align} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  BEGINNING OF SUBPROBLEMS LIST
+\begin{enumerate}
+
+% Subproblem description
+\examproblempart{What is the optimal $\bw$ and $b$? Show all your work and reasoning. (Hint: Draw it out.)
+\\}
+% Solution box
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.4cm}
+
+\inbooklet{Your answer:
+\spEighteenSvmOneA
+}
+
+\solution{\spEighteenSvmOneA}
+\end{minipage}
+}
+
+\examproblempart{Which of the examples are support vectors?\\}
+% Solution box
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.4cm}
+
+\inbooklet{Your answer:
+\spEighteenSvmOneB
+}
+
+\solution{\spEighteenSvmOneB}
+\end{minipage}
+}
+
+\examproblempart{A standard quadratic program is as follows,
+\begin{equation*}
+\begin{aligned}
+& \underset{\bz}{\text{minimize}}
+& \frac{1}{2} \bz^{\intercal}P\bz + \mathbf{q}^{\intercal} \mathbf{z} \\
+& \text{subject to}
+& G\bz \leq \mathbf{h}
+\end{aligned}
+\end{equation*}
+Rewrite Equation \eqref{eq:svm} into the above form. (\ie define $\bz, P, \mathbf{q}, G, \mathbf{h}$  using $\bw, b$ and values in $\cD$). Write the constraints in the {\bf same order} as provided in $\cD$ and typeset it using \texttt{bmatrix}.\\
+}
+
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.4cm}
+
+\inbooklet{Your answer:
+\spEighteenSvmOneC
+}
+
+\solution{\spEighteenSvmOneC}
+\end{minipage}
+
+}
+
+\examproblempart{Recall that for a soft-SVM we solve the following optimization problem.
+\begin{center}
+\begin{align}
+\min\limits_{w, b} \frac{1}{2} \norm{\bw}^2 + C \cdot \sum\limits_{i=1}^{|D|} \xi^{(i)} \;\;\;
+\text{s.t.} \;\; y^{(i)}(\bw^\intercal\bx^{(i)} + b \geq 1 - \xi^{(i)}), \xi^{(i)}\geq 0 \;\; ,\forall (x^{(i)}, y^{(i)}) \in \cD
+\end{align} 
+\end{center}
+Describe what happens to the margin when $C = \infty$ and $C = 0$.
+}
+
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.4cm}
+
+\inbooklet{Your answer:
+\spEighteenSvmOneD
+}
+
+\solution{\spEighteenSvmOneD}
+\end{minipage}
+
+}
+
+%%%%%%%%%%%% END OF SUBPROBLEMS LIST
+
+\end{enumerate}
+
+\examproblem{4}{Kernels\\
+\begin{enumerate}
+\examproblempart{If $K_1(\bx, \bz)$ and $K_2(\bx, \bz)$ are both valid kernel functions, and $\alpha$ and $\beta$ are positive,
+prove that 
+\[\alpha K_1(\bx, \bz) + \beta K_2(\bx, \bz)
+\]
+is also a valid kernel function.
+\\}
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.4cm}
+
+\inbooklet{Your answer:
+\spEighteenSvmTwoA
+}
+
+\solution{\spEighteenSvmTwoA}
+\end{minipage}
+
+}
+
+\examproblempart{Show that $K(\bx,\bz) = (\bx^{\intercal}\bz)^2$ is a valid kernel, for $\bx, \bz \in \mathbb{R}^2$.\\ (\ie 
+write out the $\Phi(\cdot)$, such that $K(\bx,\bz) = \Phi(\bx)^\intercal\Phi(\bz)$\\}
+\framebox[14.7cm][l]{
+\begin{minipage}[b]{14.4cm}
+
+\inbooklet{Your answer:
+\spEighteenSvmTwoB
+}
+
+\solution{\spEighteenSvmTwoB}
+\end{minipage}
+
+}
+
+\end{enumerate}
+}
