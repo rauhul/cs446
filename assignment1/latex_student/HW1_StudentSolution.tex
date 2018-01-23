@@ -4,6 +4,7 @@
 %%.   YOUR SOLUTION FOR PROBLEM 1.a) BELOW THIS COMMENT
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Each datum $x^{(i)}$ is an input image.
 \vspace{2cm}
 }
 \newcommand{\HWStudSolAB}{
@@ -12,6 +13,7 @@
 %%.   YOUR SOLUTION FOR PROBLEM 1.b) BELOW THIS COMMENT
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Each label $y^{(i)}$ is a member of an enumerated set (potentially an\\integer) representing the classification of its corresponding example.
 \vspace{2cm}
 }
 \newcommand{\HWStudSolAC}{
@@ -20,6 +22,7 @@
 %%.   YOUR SOLUTION FOR PROBLEM 1.c) BELOW THIS COMMENT
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The model describes the various layers in the network, what\\operations they perform and how they connect to each other. Ultimately, the model\\is a function that converts our inputs to the desired outputs.
 \vspace{2cm}
 }
 
@@ -29,6 +32,7 @@
 %%.   YOUR SOLUTION FOR PROBLEM 1.d) BELOW THIS COMMENT
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Inference is using the model with its current weights to make an\\educated guess about the correct output. Learning is making an educated guess\\and making sure the output is correct, then adjusting the model's weights to\\improve the output for future examples.
 \vspace{2cm}
 }
 
@@ -42,9 +46,9 @@
 \hline
 $x_1$ & $x_2$ & $y$\\
 \hline
-$-2.6$ & $6.6$ & ?\\
-$1.4$ & $1.6$ & ?\\
-$-2.5$ & $1.2$ & ?\\
+$-2.6$ & $6.6$ & 1\\
+$1.4$ & $1.6$ & 2\\
+$-2.5$ & $1.2$ & 2\\
 \hline
 \end{tabular}
 }
@@ -59,9 +63,9 @@ $-2.5$ & $1.2$ & ?\\
 \hline
 $x_1$ & $x_2$ & $y$\\
 \hline
-$-2.6$ & $6.6$ & ?\\
-$1.4$ & $1.6$ & ?\\
-$-2.5$ & $1.2$ & ?\\
+$-2.6$ & $6.6$ & 1\\
+$1.4$ & $1.6$ & 1\\
+$-2.5$ & $1.2$ & 2\\
 \hline
 \end{tabular}
 }
@@ -72,6 +76,7 @@ $-2.5$ & $1.2$ & ?\\
 %%.   YOUR SOLUTION FOR PROBLEM 2.c) BELOW THIS COMMENT
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Classifying an additional point will result in the new point taking\\the most common label of the n closest points and it will use some tie breaking\\method if multiple labels have the same number of occurrences within this subset.
 \vspace{2cm}
 }
 
@@ -81,7 +86,6 @@ $-2.5$ & $1.2$ & ?\\
 %%.   YOUR SOLUTION FOR PROBLEM 2.d) BELOW THIS COMMENT
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+No parameters are learned during KNN. KNN uses a fixed datasets\\and statically compute the classification for input points base on this dataset. KNN\\does not use the dataset to compute new parameters used to improve its ability\\to classify new inputs.
 \vspace{2cm}
 }
-
-
