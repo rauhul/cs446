@@ -16,5 +16,8 @@ def run_computation(inp):
        The result of the computation (exact type depends on input)
 
     '''
-    # Input your code here
+    with tf.Session() as sess:
+        result = sess.run(inp)
+        return result
+
     return None
