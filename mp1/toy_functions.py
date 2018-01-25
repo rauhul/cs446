@@ -13,7 +13,16 @@ def toy_fn_1(arg1, arg2):
     Returns:
         (tf.Tensor): the result of the computation (same rank as inputs)
     '''
-    # Input your code here
+    with tf.Session() as sess:
+        term1 = tf.pow(arg1, 3)
+        arg2_pow = tf.pow(arg2, 2)
+        term2 = tf.scalar_mul(4, arg2_pow)
+        term3 = tf.scalar_mul(-10, arg1)
+        partial_sum = tf.add(term1, term2)
+        final_sum = tf.add(partial_sum, term3)
+        result = sess.run(final_sum)
+        return result
+
     return None
 
 
@@ -32,7 +41,13 @@ def toy_fn_2(arg1, arg2):
         (tf.Tensor): the result of the computation, which is a rank-1 tensor
           with dimension m
     '''
-    # Input your code here
+    with tf.Session() as sess:
+        term1 = tf.reduce_sum(arg1, 1)
+        maxValue = tf.reduce_max(arg2)
+        final_sub = tf.subtract(term1, maxValue)
+        result = sess.run(final_sub)
+        return result
+
     return None
 
 
@@ -58,5 +73,10 @@ def toy_fn_3(arg1, arg2):
         (tf.Tensor): the result of the computation, which is a rank-1 tensor
           with dimension 2*m
     '''
-    # Input your code here
+    with tf.Session() as sess:
+        stack = tf.stack([arg1, arg2], axis=1)
+        final_shape = tf.reshape(stack, [-1])
+        result = sess.run(final_shape)
+        return result
+
     return None
