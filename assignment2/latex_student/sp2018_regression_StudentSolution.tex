@@ -1,32 +1,32 @@
 % !TEX root = HW2.tex
 \newcommand{\spEighteenRegressionOneA}{
-
+$\cL = \frac{1}{|\cD|}\sum_{i}^{|\cD|}\frac{1}{2}(y^{(i)}-\hat{y}^{(i)})^2$
 }
 
 \newcommand{\spEighteenRegressionOneB}{
-
+$\frac{\partial \cL}{\partial \hat{y}^{(i)}} = \frac{-1}{|\cD|}(y^{(i)}-\hat{y}^{(i)})$
 }
 
 \newcommand{\spEighteenRegressionOneC}{
-
+$\frac{\partial \hat{y}^{(i)}}{\partial \mathbf{w}_k} =\mathbf{x}_k^{(i)}$
 }
 
 \newcommand{\spEighteenRegressionOneD}{
-
+$\nabla_w \cL = \frac{-1}{|\cD|}\sum_{i}^{|\cD|}  (y^{(i)}-(w^T\mathbf{x}^{(i)}+b)) \mathbf{x}^{(i)}$
 }
 
 \newcommand{\spEighteenRegressionOneE}{
-
+$\frac{\partial \cL}{\partial b} = \frac{-1}{|\cD|}\sum_{i}^{|\cD|}  (y^{(i)}-(w^T\mathbf{x}^{(i)}+b))$
 }
 
 \newcommand{\spEighteenRegressionOneF}{
-
+$\mathbf{u}^{*} = (\mathbf{Z}^T\mathbf{Z})^{-1}\mathbf{Z}^T\mathbf{y}$
 }
 
 \newcommand{\spEighteenRegressionTwoA}{
-
+$p(y^{(i)}|x^{(i)},w) = \frac{1}{\sqrt{2\pi}}exp(-\frac{(y^{(i)}-\mathbf{w}^T\mathbf{x}^{(i)})^2}{2})$
 }
 
 \newcommand{\spEighteenRegressionTwoB}{
-
+$p(y^{(i)}|x^{(i)},w) = \frac{1}{2}\log(\frac{1}{\sqrt{2\pi}})\sum_{i}^{|\cD|}(y^{(i)}-\mathbf{w}^T\mathbf{x}^{(i)})^2$
 }
