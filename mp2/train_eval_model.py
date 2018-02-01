@@ -63,7 +63,7 @@ def train_model_analytic(processed_dataset, model):
     """
     d = processed_dataset
     one_postpend = np.hstack((d[0], np.ones((len(d[0]),1))))
-    model.w, _, _, _ = np.linalg.lstsq(one_postpend, d[1], rcond=None)
+    model.w, _, _, _ = np.linalg.lstsq(one_postpend, d[1])
 
 def eval_model(processed_dataset, model):
     """Performs evaluation on a dataset.
