@@ -6,6 +6,7 @@
 %%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+$\mathbf{y} = sign(\mathbf{w}^T\mathbf{x})$. Positive values will be treated as 1 and negative\\values will be treated as -1.
 \vspace{3cm}
 }
 
@@ -15,6 +16,7 @@
 %%.   YOUR SOLUTION FOR PROBLEM B BELOW THIS COMMENT
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+$\mathbf{y} = sign(g(\mathbf{w}^T\mathbf{x})-0.5)$. Values above 0.5 will be treated as 1 and\\values under 0.5 will be treated as -1.
 \vspace{3cm}
 }
 
@@ -24,7 +26,15 @@
 %%.   YOUR SOLUTION FOR PROBLEM C BELOW THIS COMMENT
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{3cm}
+\begin{align*}
+g(a)&=\frac{1}{1+e^{-a}}\\
+\frac{\partial g(a)}{\partial a}&=\frac{\partial }{\partial a}\frac{1}{1+e^{-a}}\\
+\frac{\partial g(a)}{\partial a}&=\frac{e^{-a}}{(1+e^{-a})^2}\\
+\frac{\partial g(a)}{\partial a}&=\frac{1}{1+e^{-a}}\frac{e^{-a}}{1+e^{-a}}\\
+\frac{\partial g(a)}{\partial a}&=g(a)\frac{1+e^{-a}-1}{1+e^{-a}}\\
+\frac{\partial g(a)}{\partial a}&=g(a)(\frac{1+e^{-a}}{1+e^{-a}}-\frac{1}{1+e^{-a}})\\
+\frac{\partial g(a)}{\partial a}&=g(a)(1-g(a))\\
+\end{align*}
 }
 
 \newcommand{\binStudSolD}{
@@ -33,7 +43,11 @@
 %%.   YOUR SOLUTION FOR PROBLEM D BELOW THIS COMMENT
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{3cm}
+\begin{align*}
+k^{(i)} :=& g(\mathbf{w}^T\mathbf{x}^{(i)})\\
+\nabla_\mathbf{w}=&-(\mathbf{y}^{(i)}-k^{(i)})k^{(i)}(1-k^{(i)})\mathbf{x}^{(i)}\\
+\mathbf{w}_{n+1}=&\mathbf{w}_{n} + \eta\nabla_{\mathbf{w}_n}
+\end{align*}
 }
 
 \newcommand{\binStudSolE}{
@@ -42,6 +56,7 @@
 %%.   YOUR SOLUTION FOR PROBLEM E BELOW THIS COMMENT
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Whenever we use logistic regression we do so under the assumption\\that all the independent variables are truly independent of one another and are\\identically distributed.
 \vspace{3cm}
 }
 
