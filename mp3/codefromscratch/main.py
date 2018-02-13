@@ -7,7 +7,7 @@ from logistic_model import *
 
 """ Hyperparameter for Training """
 learn_rate = 0.001
-max_iters = 100
+max_iters = 1000
 
 if __name__ == '__main__':
 

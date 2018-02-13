@@ -1,4 +1,4 @@
-% !TEX root = HW4.tex
+% !TEX root = main.tex
 \ifthenelse{\equal{\type}{booklet}}{
 \input{sp2018_svm_StudentSolution} %The students have to fill this file to print the solution
 }{
@@ -30,7 +30,7 @@ $i$ & $\bx_1^{(i)}$ & $\bx_2^{(i)}$ & $y^{(i)}$\\
 Recall a hard SVM is as follows:
 \begin{align}\label{eq:svm}
 \min\limits_{w, b} \frac{1}{2} \norm{\bw}^2 \;\;\;
-\text{s.t.} \;\; y^{(i)}(\bw^\intercal\bx^{(i)} + b \geq 1) \;\; ,\forall (x^{(i)}, y^{(i)}) \in \cD
+\text{s.t.} \;\; y^{(i)}(\bw^\intercal\bx^{(i)} + b) \geq 1 \;\; ,\forall (x^{(i)}, y^{(i)}) \in \cD
 \end{align} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -92,8 +92,8 @@ Rewrite Equation \eqref{eq:svm} into the above form. (\ie define $\bz, P, \mathb
 \examproblempart{Recall that for a soft-SVM we solve the following optimization problem.
 \begin{center}
 \begin{align}
-\min\limits_{w, b} \frac{1}{2} \norm{\bw}^2 + C \cdot \sum\limits_{i=1}^{|D|} \xi^{(i)} \;\;\;
-\text{s.t.} \;\; y^{(i)}(\bw^\intercal\bx^{(i)} + b \geq 1 - \xi^{(i)}), \xi^{(i)}\geq 0 \;\; ,\forall (x^{(i)}, y^{(i)}) \in \cD
+\min\limits_{w, b, \xi^{(i)}} \frac{1}{2} \norm{\bw}^2 + C \cdot \sum\limits_{i=1}^{|D|} \xi^{(i)} \;\;\;
+\text{s.t.} \;\; y^{(i)}(\bw^\intercal\bx^{(i)} + b) \geq 1 - \xi^{(i)}, \xi^{(i)}\geq 0 \;\; ,\forall (x^{(i)}, y^{(i)}) \in \cD
 \end{align} 
 \end{center}
 Describe what happens to the margin when $C = \infty$ and $C = 0$.
