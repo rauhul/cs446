@@ -215,7 +215,7 @@ class MulticlassSVM:
 
         # d/dw l2_loss = W
         # shape (K, d).
-        grad = W
+        grad = np.copy(W)
 
         arr = np.arange(K)
 
@@ -228,7 +228,7 @@ class MulticlassSVM:
             if arg_max != y_i:
                 g = C * x_i
                 # only adjust the revelant gradent row
-                grad[arg_max] -= g
-                grad[y_i] += g
+                grad[arg_max] += g
+                grad[y_i] -= g
 
         return grad
