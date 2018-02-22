@@ -1,62 +1,128 @@
-\newcommand{\studSolAA}{
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%
-	%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-	%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\vspace{3cm}
+\newcommand{\studSolAA} {
+2 is the most suitable application for multi-class classification and
+3 is the most suitable application for binary classification.
 }
 
-\newcommand{\studSolAB}{
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%
-	%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-	%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\vspace{3cm}
+\newcommand{\studSolAB} {
+We need $(n-1)$ binary SVM classifiers to get 1-vs-all classifiers and $\frac{n(n-1)}{2}$ to get 1-vs-1 multi-class classifiers.
 }
 
-\newcommand{\studSolAC}{
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%
-	%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-	%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\vspace{3cm}
+\newcommand{\studSolAC} {
+Given the data set in b, there is no region with ties. This is because all decision hyper planes pass through the origin. This results is no enclosed hyper-volume, if there is no hyper-volume we will not find a region with multiple majority votes.
 }
 
-\newcommand{\studSolBA}{
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%
-	%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-	%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\vspace{3cm}
+\newcommand{\studSolBA} {
+$$
+\min\limits_{w, \xi^{(i)} \geq 0} \frac{C}{2}(w_1^2+w_2^2+w_3^2+w_4^2+w_5^2+w_6^2) + \sum_{i=1}^{n}\xi^{i}
+$$
+$$
+\begin{bmatrix}
+0  & 0  & -1 & 0  & 0  & 0  \\
+-1 & -1 & 0  & 0  & -1 & 0  \\
+0  & 0  & 1  & 1  & 0  & 0  \\
+1  & 0  & 0  & 0  & 0  & -1 \\
+0  & 0  & 0  & -1 & 0  & 0  \\
+0  & 1  & 0  & 0  & 1  & 1
+\end{bmatrix}^T
+\begin{bmatrix}
+w_1\\w_2\\w_3\\w_4\\w_5\\w_6
+\end{bmatrix}
+\geq
+\mathbf{1}
+-
+\begin{bmatrix}
+\xi_1\\\xi_1\\\xi_2\\\xi_2\\\xi_3\\\xi_3
+\end{bmatrix}
+$$
 }
 
 \newcommand{\studSolBB}{
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%
-	%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-	%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\vspace{3cm}
+$$
+\xi_1 = \max\{0, 1+w_2-w_4, 1+w_2-w_6\}
+$$
+$$
+\xi_2 = \max\{0, 1+w_1-w_3, 1+w_5-w_3\}
+$$
+$$
+\xi_3 = \max\{0, 1+w_2-w_6, 1+w_4-w_6\}
+$$
+
+\begin{align*}
+\min\limits_{w, \xi^{(i)} \geq 0} \frac{C}{2}(w_1^2+w_2^2+w_3^2+w_4^2+w_5^2+w_6^2) 
+  &+ \max\{0, 1+w_2-w_4, 1+w_2-w_6\} 
+\\&+ \max\{0, 1+w_1-w_3, 1+w_5-w_3\} 
+\\&+ \max\{0, 1+w_2-w_6, 1+w_4-w_6\} 
+\end{align*}
+
+$$
+\begin{bmatrix}
+0  & 0  & -1 & 0  & 0  & 0  \\
+-1 & -1 & 0  & 0  & -1 & 0  \\
+0  & 0  & 1  & 1  & 0  & 0  \\
+1  & 0  & 0  & 0  & 0  & -1 \\
+0  & 0  & 0  & -1 & 0  & 0  \\
+0  & 1  & 0  & 0  & 1  & 1
+\end{bmatrix}^T
+\begin{bmatrix}
+w_1\\w_2\\w_3\\w_4\\w_5\\w_6
+\end{bmatrix}
+\geq
+\begin{bmatrix}
+1-\max\{0, 1+w_2-w_4, 1+w_2-w_6\} \\
+1-\max\{0, 1+w_2-w_4, 1+w_2-w_6\} \\
+1-\max\{0, 1+w_1-w_3, 1+w_5-w_3\} \\
+1-\max\{0, 1+w_1-w_3, 1+w_5-w_3\} \\
+1-\max\{0, 1+w_2-w_6, 1+w_4-w_6\} \\
+1-\max\{0, 1+w_2-w_6, 1+w_4-w_6\} \\
+\end{bmatrix}
+$$
 }
 
 \newcommand{\studSolBC}{
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%
-	%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-	%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\vspace{3cm}
+\begin{align*}
+\frac{\partial}{\partial w_2}\Bigg(
+\frac{C}{2}(w_1^2+w_2^2+w_3^2+w_4^2+w_5^2+w_6^2) 
+  &+ \max\{0, 1+w_2-w_4, 1+w_2-w_6\} 
+\\&+ \max\{0, 1+w_1-w_3, 1+w_5-w_3\} 
+\\&+ \max\{0, 1+w_2-w_6, 1+w_4-w_6\} 
+\Bigg)(w_t)
+\\=Cw_2 + 1
+\end{align*}
+$$
+\begin{bmatrix}
+0  & 0  & -1 & 0  & 0  & 0  \\
+-1 & -1 & 0  & 0  & -1 & 0  \\
+0  & 0  & 1  & 1  & 0  & 0  \\
+1  & 0  & 0  & 0  & 0  & -1 \\
+0  & 0  & 0  & -1 & 0  & 0  \\
+0  & 1  & 0  & 0  & 1  & 1
+\end{bmatrix}^T
+\begin{bmatrix}
+w_1\\w_2\\w_3\\w_4\\w_5\\w_6
+\end{bmatrix}
+\geq
+\begin{bmatrix}
+1-\max\{0, 1+w_2-w_4, 1+w_2-w_6\} \\
+1-\max\{0, 1+w_2-w_4, 1+w_2-w_6\} \\
+1-\max\{0, 1+w_1-w_3, 1+w_5-w_3\} \\
+1-\max\{0, 1+w_1-w_3, 1+w_5-w_3\} \\
+1-\max\{0, 1+w_2-w_6, 1+w_4-w_6\} \\
+1-\max\{0, 1+w_2-w_6, 1+w_4-w_6\} \\
+\end{bmatrix}
+$$
 }
 
 \newcommand{\studSolBD}{
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%
-	%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-	%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\vspace{3cm}
+\begin{align*}
+\max \limits_{\hat{y}} (1 + w_{\hat{y}}^T \phi (x)) &= \lim_{\epsilon \rightarrow 0}  \epsilon \ln \sum_{\hat{y}} \exp \bigg( \frac{ (1 + w_{\hat{y}}^T \phi(x)) }{\epsilon} \bigg)
+\quad\quad\textit{let } \epsilon = \frac{1}{p}
+\\
+&= \lim_{p \rightarrow \infty} \frac{1}{p} \ln \sum_{\hat{y}}\exp{(1+w_{\hat{y}}^T\phi(x))^p}
+\\&= \lim_{p\rightarrow\infty} \ln  \bigg( \big(\sum_{\hat{y}}e^{(1+w_{\hat{y}}^T\phi(x))^p}\big)^{\frac{1}{p}}\bigg)
+\\&\textit{since} \ln(x) \textit{ is continuous on the range it is defined}
+\\&=  \ln \bigg(  \lim_{p\rightarrow\infty}\big( \sum_{\hat{y}}e^{(1+w_{\hat{y}}^T\phi(x))^p}\big)^{\frac{1}{p}}\bigg)
+\\&\textit{using the definition of the infinity norm}
+\\&=  \ln \bigg( \max\limits_{\hat{y}} \big(e^{(1+w_{\hat{y}}^T\phi(x))}\big)\bigg)
+\\&=  \max\limits_{\hat{y}} (1+w_{\hat{y}}^T\phi(x))
+\end{align*}
 }
