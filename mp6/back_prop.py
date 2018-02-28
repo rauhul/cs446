@@ -84,7 +84,7 @@ class Neural_Network():
             d_o: derivative of the L2 loss with respect to the network's
             output o. (batchSize, outputSize)
         '''
-        return o - gt # d_o
+        return (o - gt) / o.shape[0] # d_o
 
 
     def error_at_layer2(self, d_o, o):
