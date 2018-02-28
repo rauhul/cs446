@@ -1,65 +1,76 @@
+\newcommand{\deriv}[2]{\frac{\partial #1}{\partial #2}}
+
 \newcommand{\backpropStudSolA}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2cm}
+\begin{align*}
+\sigma(x)&=\frac{1}{1+e^{-x}}\\
+\frac{\partial \sigma(x)}{\partial x}&=\frac{\partial }{\partial x}\frac{1}{1+e^{-x}}\\
+&=\frac{e^{-x}}{(1+e^{-x})^2}\\
+&=\frac{1}{1+e^{-x}}\frac{e^{-x}}{1+e^{-x}}\\
+&=\sigma(x)\frac{1+e^{-x}-1}{1+e^{-x}}\\
+&=\sigma(x)(\frac{1+e^{-x}}{1+e^{-x}}-\frac{1}{1+e^{-x}})\\
+&=\sigma(x)(1-\sigma(x))\\
+\end{align*}
 }
 
 \newcommand{\backpropStudSolB}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2cm}
+\begin{align*}
+c_k &= g(h_k) \\
+\delta_k &= \deriv{E}{h_k} \\
+&= \deriv{}{h_k} (\frac{1}{2}\sum_{k}(c_k-t_k)^2) \\
+&= \sum_{k}\big((c_k-t_k)g'(h_k)\big) \\
+\end{align*}
 }
 
 \newcommand{\backpropStudSolC}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2cm}
+\begin{align*}
+h_k &= \sum_{j}(w_{jk}b_{j}) + f_{k} \\
+\deriv{E}{w_{jk}} &= \deriv{E}{h_k} \deriv{h_k}{w_{jk}} \\
+&=\delta_k \deriv{h_k}{w_{jk}} \\
+&=\delta_k \deriv{}{w_{jk}}\big(\sum_{j}(w_{jk}b_{j}) + f_{k}\big) \\
+&=\delta_k \sum_{j}b_{j} \\
+\end{align*}
 }
 
 \newcommand{\backpropStudSolD}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2cm}
+\begin{align*}
+h_k &= \sum_{j}(w_{jk}b_{j}) + f_{k} \\
+\deriv{E}{f_{k}} &= \deriv{E}{h_k} \deriv{h_k}{f_{k}} \\
+&=\delta_k \deriv{h_k}{f_{k}} \\
+&=\delta_k \deriv{}{f_{k}}\big(\sum_{j}(w_{jk}b_{j}) + f_{k}\big) \\
+&=\delta_k \\
+\end{align*}
 }
 
 \newcommand{\backpropStudSolE}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2cm}
+\begin{align*}
+h_k &= \sum_{j}(w_{jk}b_{j}) + f_{k} \\
+\deriv{h_k}{b_j} &= \sum_{j}w_{jk} \\
+\end{align*}
+\begin{align*}
+b_j &= g(z_j) \\
+\psi_j &= \deriv{E}{z_j} \\
+&= \deriv{E}{h_k} \deriv{h_k}{b_j}  \deriv{b_j}{z_j}  \\
+&= \delta_k \sum_{j}\big(w_{jk} g'(z_j)\big) \\
+\end{align*}
 }
-
 
 \newcommand{\backpropStudSolF}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2cm}
+\begin{align*}
+z_j &= \sum_{i}(u_{ij}a_{i}) + e_j \\
+\deriv{E}{u_{ij}} &= \deriv{E}{z_j} \deriv{z_j}{u_{ij}} \\
+&=\psi_j \deriv{z_j}{u_{ij}}\\
+&=\psi_j \deriv{}{u_{ij}}\big(\sum_{i}(u_{ij}a_{i}) + e_j\big) \\
+&=\psi_j \sum_{i}a_{i} \\
+\end{align*}
 }
-
-
 
 \newcommand{\backpropStudSolH}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2cm}
+\begin{align*}
+z_j &= \sum_{i}(u_{ij}a_{i}) + e_j \\
+\deriv{E}{e_j} &= \deriv{E}{z_j} \deriv{z_j}{e_j} \\
+&=\psi_j \deriv{z_j}{e_j}\\
+&=\psi_j \deriv{}{e_j}\big(\sum_{i}(u_{ij}a_{i}) + e_j\big) \\
+&=\psi_j \\
+\end{align*}
 }
+

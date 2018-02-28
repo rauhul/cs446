@@ -6,7 +6,7 @@ import numpy as np
 
 
 class DeepLearningTest(unittest.TestCase):
-	
+
 	def test_sigmoidPrime(self):
 		NN = Neural_Network()
 		s = np.array([0.2, 3.4, 7.4])
@@ -20,11 +20,11 @@ class DeepLearningTest(unittest.TestCase):
 	def test_forward(self):
 		NN = Neural_Network()
 		X = np.random.randint(0, high=10, size=[3,2], dtype='l')
-		X = X/np.amax(X, axis=0) 
+		X = X/np.amax(X, axis=0)
 		sol_1 = NN.forward(X)
-		z = np.dot(X, NN.U) + NN.e       
-		b = NN.sigmoid(z)        
-		h = np.dot(b, NN.W) + NN.f      
+		z = np.dot(X, NN.U) + NN.e
+		b = NN.sigmoid(z)
+		h = np.dot(b, NN.W) + NN.f
 		sol_2 = NN.sigmoid(h)
 		self.assertEqual(sol_1[0][0],sol_2[0][0])
 		self.assertEqual(sol_1[1][0],sol_2[1][0])
