@@ -1,52 +1,47 @@
 \newcommand{\MRFStudSolAA}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM 1.a) BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{4cm}
+$$
+\text{\#configurations} = 5^4 = 625
+$$
 }
 \newcommand{\MRFStudSolAB}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM 1.b) BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{4cm}
+No, because the graph is cyclic, implying the graph cannot be\\represented as a dependency tree.
 }
 \newcommand{\MRFStudSolAC}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM 1.c) BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{4cm}
+$\text{\#messages} = \|\lambda\_{p,r,y_r}\|$; where p is the number of parents 4, r is\\the number of regions 8 and $y_r$ is the number of labels 5.
+$\text{\#messages} = 4*5*8 = 160$
 }
-
-
 \newcommand{\MRFStudSolBA}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM 2.a) BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{4cm}
-}
+\begin{align*}
+\text{define}\quad& r \in \{\{1\}, \{2\}, \{1,2\}\}\\
+& x_1 \in \{0,1\}\\
+& x_2 \in \{0,1\}\\
+& x_{1,2} \in \{(0,0), (0,1), (1,0), (1,1)\}\\
+\\
+\text{maximize}\quad&
+\begin{bmatrix}b_1(0)\\b_1(1)\\b_2(0)\\b_2(1)\\b_{1,2}(0,0)\\b_{1,2}(0,1)\\b_{1,2}(1,0)\\b_{1,2}(1,1)\end{bmatrix}^T\begin{bmatrix}1\\2\\1\\2\\-1\\2\\-1\\-1\end{bmatrix}\\
+\\
+\text{subject to}\quad& b_r(x_r) \in \{0,1\} \quad r\\
+&\sum_{x_1}b_1(x_1)  = 1\\
+&\sum_{x_2}b_1(x_2)  = 1\\
+&\sum_{x_{1,2}}b_{1,2}(x_{1,2})  = 1\\
+& b_{1,2}(0,0) + b_{1,2}(0,1) = b_1(0) \\
+& b_{1,2}(1,0) + b_{1,2}(1,1) = b_1(1) \\
+& b_{1,2}(0,0) + b_{1,2}(1,0) = b_2(0) \\
+& b_{1,2}(0,1) + b_{1,2}(1,1) = b_2(1) \\
+\end{align*}}
 
 \newcommand{\MRFStudSolBB}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM 2.b) BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{4cm}
+$$
+\mathbf{b} = \begin{bmatrix}b_1(0)\\b_1(1)\\b_2(0)\\b_2(1)\\b_{1,2}(0,0)\\b_{1,2}(0,1)\\b_{1,2}(1,0)\\b_{1,2}(1,1)\end{bmatrix}
+=
+\begin{bmatrix}1\\0\\0\\1\\0\\1\\0\\0\end{bmatrix}
+$$
+
+$$
+\mathbf{b}^T\theta(\mathbf{x}) = 5
+$$
 }
 
 \newcommand{\MRFStudSolBC}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM 2.c) BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{4cm}
+As the number of features examined in an MRF increases and the set\\of labels increases, the number of constraints generated becomes computationally\\infeasible.
 }

@@ -1,7 +1,7 @@
 import numpy as np
 
 # define the number of iterations.
-num_itr = 1000
+num_itr = 100000
 
 # define batch size.
 batchSize = 3.
@@ -234,11 +234,12 @@ def main():
     # create an instance of Neural_Network.
     NN = Neural_Network()
     for i in range(num_itr):
-        print("Input: \n" + str(a))
-        print("Actual Output: \n" + str(t))
-        print("Predicted Output: \n" + str(NN.forward(a)))
-        print("Loss: \n" + str(np.mean(np.square(t - NN.forward(a)))))
-        print("\n")
+        if (i%1000 == 0):
+            # print("Input: \n" + str(a))
+            # print("Actual Output: \n" + str(t))
+            # print("Predicted Output: \n" + str(NN.forward(a)))
+            print("Loss: " + str(np.mean(np.square(t - NN.forward(a)))))
+            # print("\n")
         NN.train(a, t)
 
 
