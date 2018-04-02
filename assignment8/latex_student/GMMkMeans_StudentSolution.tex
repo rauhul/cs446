@@ -1,53 +1,25 @@
 \newcommand{\GMMkMeansStudSolA}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2.5cm}
+K-means is an un-supervised method that attempts to find hidden\\structure in a set of data.
 }
 
 \newcommand{\GMMkMeansStudSolB}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{3cm}
+\begin{align*}
+&r_{ik} \in \{0,1\}  &\forall  i \in D , k \in K\\
+\sum_{K} &r_{ik} = 1 &\forall  i \in D \\
+\end{align*}
 }
 
 \newcommand{\GMMkMeansStudSolC}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2.5cm}
+\begin{align*}
+&r_{ik} \in [0,1]  &\forall  i \in D , k \in K\\
+\sum_{K} &r_{ik} = 1 &\forall  i \in D \\
+\end{align*}
 }
 
 \newcommand{\GMMkMeansStudSolD}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2cm}
+The best number of clusters for this set of data is 5, as it has the\\minimum euclidean distance between cluster centers and doesn't introduce\\unnecessary clusters.
 }
 
 \newcommand{\GMMkMeansStudSolE}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{3cm}
+No, K-means would not be an efficient algorithm to cluster the\\data. K-means attempts to find cluster centers with neat hyper-spheres around\\them; this is due to desire to minimize the intra-cluster sum of squares. Since the\\data doesn't follow this presumed shape (both clusters share the same apparent\\cluster center) the algorithm fails to cluster it well.
 }
-
-%\newcommand{\GMMkMeansStudSolF}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%
-%%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\vspace{12cm}
-%}
