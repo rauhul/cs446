@@ -1,53 +1,36 @@
 \newcommand{\GMMkMeansStudSolA}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2.5cm}
+$$
+\log p(X; \theta) =\sum_i log \sum_k \pi_k \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x_i - \mu_k)^2}{2\sigma_k^2}}
+$$
 }
 
 \newcommand{\GMMkMeansStudSolB}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{3cm}
+$$
+p(z_i = k | x_i;\theta^{(t)}) = \frac{\pi_k^{(t)}\mathcal{N}(x_i | \mu_k^{(t)},\sigma_k^{(t)})}{\sum_{c \in K} \pi_c\mathcal{N}(x_i | \mu_c^{(t)},\sigma_c^{(t)})}
+$$
 }
 
 \newcommand{\GMMkMeansStudSolC}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2.5cm}
+$$
+\bE_{z_i| x_i; \theta^{(t)}}[\log p(x_i, z_i; \theta)] =
+\sum_{k}z_{ik}\log(\pi_k\mathcal{N}(\mathbf{x}_i|\mathbf{\theta}_k))
+$$
 }
 
 \newcommand{\GMMkMeansStudSolD}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2cm}
+\begin{align*}
+\mu_k^{(t + 1)} &= \frac{\sum_i z_{ik} x_i}{\sum_i z_{ik}} \\
+\pi_k^{(t+1)} &= \frac{\sum_i z_{ik}}{N} \\
+{\sigma_k^2}^{(t+1)} &= \frac{\sum_i z_{ik} || x_i - \mu_k^{(t)}||^2}{\sum_i z_{ik}}
+\end{align*}
 }
 
 \newcommand{\GMMkMeansStudSolE}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{3cm}
+\begin{itemize}
+\item kMeans assumes the data is IID, whereas GMM does not make this assumption
+\item kMeans uses $(x-\mu_{k})^2$ as it's distance metric, whereas GMM uses $\frac{(x-\mu_{k})^2}{\sigma^2}$ \\ (euclidean distance) vs (euclidean distance divided by variance)
+\item kMeans assigns each point the label of the closest center, whereas GMM\\assigns each point the label of the most probable latent variable
+\end{itemize}
 }
 
-\newcommand{\GMMkMeansStudSolF}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{12cm}
-}
+\newcommand{\GMMkMeansStudSolF}{ }
