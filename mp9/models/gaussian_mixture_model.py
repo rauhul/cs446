@@ -36,7 +36,7 @@ class GaussianMixtureModel(object):
             x(numpy.ndarray): Feature array of dimension (N, ndims).
         """
 
-        self._mu = x[np.random.choice(x.shape[0], size=self._n_components, replace=False),:]
+        self._mu = x[np.random.choice(x.shape[0], size=self._n_components), :]
 
         for i in range(self._max_iter):
             print("iter:", i)
@@ -139,9 +139,8 @@ class GaussianMixtureModel(object):
             y(numpy.ndarray): Array containing the label of dimension (N,)
         """
         self.cluster_label_map = np.random.rand(self._n_components).tolist()
-        z_ik = self.get_posterior(x)
 
-        _label = np.argmax(z_ik, axis=1)
+        _label = np.argmax(self.get_posterior(x), axis=1)
 
         for k in range(self._n_components):
             _i = np.where(_label == k)
@@ -159,7 +158,6 @@ class GaussianMixtureModel(object):
         Returns:
             y_hat(numpy.ndarray): Array containing the predicted label for each x, dimension (N,)
         """
-        z_ik = self.get_posterior(x)
-        _label = np.argmax(z_ik, axis=1)
+        _label = np.argmax(self.get_posterior(x), axis=1)
         y_hat = [self.cluster_label_map[i] for i in _label]
         return np.array(y_hat)
