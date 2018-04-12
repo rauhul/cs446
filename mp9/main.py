@@ -22,7 +22,7 @@ def main(_):
     semi-supervised learning using kMeans algorithm.
     """
     # Load dataset.
-    _, unlabeled_data = io_tools.read_dataset('data/simple_test.csv')
+    _, unlabeled_data = io_tools.read_dataset('data/mnist_train.csv')
     n_dims = unlabeled_data.shape[1]
 
 
@@ -34,11 +34,11 @@ def main(_):
     model.fit(unlabeled_data)
 
     # Supervised training.
-    train_label, train_data = io_tools.read_dataset('data/simple_test.csv')
+    train_label, train_data = io_tools.read_dataset('data/mnist_train.csv')
     model.supervised_fit(train_data, train_label)
 
     # Eval model.
-    eval_label, eval_data = io_tools.read_dataset('data/simple_test.csv')
+    eval_label, eval_data = io_tools.read_dataset('data/mnist_test.csv')
     y_hat_eval = model.supervised_predict(eval_data)
 
     acc = np.sum(y_hat_eval == eval_label) / (1.*eval_data.shape[0])
