@@ -78,7 +78,7 @@ class GaussianMixtureModel(object):
     def get_conditional(self, x):
         """Compute the conditional probability.
 
-        p(x^(i)|z_ik=1)
+        p(x_i|z_i=k)
 
         Args:
             x(numpy.ndarray): Feature array of dimension (N, ndims).
