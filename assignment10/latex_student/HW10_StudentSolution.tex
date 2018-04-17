@@ -1,94 +1,59 @@
-
 \newcommand{\VAESolAa}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+$$
+D_{KL}(q(x)||p(x)) = \int_{-\infty}^{\infty}q(x)\log\frac{q(x)}{p(x)}dx
+$$
 }
 
 \newcommand{\VAESolAb}{
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%
-	%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-	%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\begin{align*}
+D_{KL}(q(x)||p(x)) &= -\int_{-\infty}^{\infty}q(x)\log\frac{p(x)}{q(x)}dx \\
+&\text{Since }-\log(\cdot)\text{ is convex, we can use Jensen's}\\
+&\text{inequality to provide a lower bound}\\
+&ie. \quad E[f(g(x))] \ge f (E[g(x)])\\
+-\int_{-\infty}^{\infty} q(x) \log \frac{p(x)}{q(x)} dx
+&\ge -\log \int_{-\infty}^{\infty} q(x) \frac{p(x)}{q(x)} dx \\
+&\ge -\log \int_{-\infty}^{\infty} p(x) dx \\
+&\ge -\log (1) \\
+&\ge 0 \\
+\end{align*}
 }
 
-
-\newcommand{\VAESolBa}{	
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM B BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newcommand{\VAESolBa}{
+\begin{align*}
+&\log p_\theta(x) = \int_z q_\phi(z|x)\log\frac{p_\theta(x,z)}{q_\phi(z|x)}dz + \int_z q_\phi(z|x)\log\frac{q_\phi(z|x)}{p_\theta(z|x)}dz \\
+&\log p_\theta(x) - \int_z q_\phi(z|x)\log\frac{p_\theta(x,z)}{q_\phi(z|x)}dz  = \int_z q_\phi(z|x)\log\frac{q_\phi(z|x)}{p_\theta(z|x)}dz \\
+\text{from 1b} \\
+&\log p_\theta(x) - \int_z q_\phi(z|x)\log\frac{p_\theta(x,z)}{q_\phi(z|x)}dz \ge 0 \\
+&\log p_\theta(x) \ge \int_z q_\phi(z|x)\log\frac{p_\theta(x,z)}{q_\phi(z|x)}dz \\
+\end{align*}
 }
 
-\newcommand{\VAESolBb}{	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%
-	%%.   YOUR SOLUTION FOR PROBLEM B BELOW THIS COMMENT
-	%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newcommand{\VAESolBb}{
+Evidence Lower Bound
 }
 
-\newcommand{\VAESolBc}{	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%
-	%%.   YOUR SOLUTION FOR PROBLEM B BELOW THIS COMMENT
-	%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-}
-
-\newcommand{\VAESolBd}{	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%
-	%%.   YOUR SOLUTION FOR PROBLEM B BELOW THIS COMMENT
-	%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newcommand{\VAESolBc}{
+The bound will be tight when the KL divergence is low.
 }
 
 \newcommand{\VAESolC}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM C BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\begin{align*}
+\int_z q(z|x) \log\frac{q(z|x)}{p(z)} dz =& \int_z q(z|x) ( \log q(z|x) - \log p(z) ) dz \\
+=& \int_z \frac{1}{\sqrt{2\pi}\sigma_q} e^{-\frac{1}{2}(\frac{z-\mu_q}{\sigma_q})^2 } \times\\
+& ( -\frac{\log(2\pi)}{2} - \log(\sigma_q) - \frac{1}{2} (\frac{z-\mu_q}{\sigma_q})^2 + \frac{\log(2\pi)}{2} + \frac{1}{2} z^2 ) dz \\
+=& \int_z \frac{1}{\sqrt{2\pi}\sigma_q} e^{-\frac{1}{2}(\frac{z-\mu_q}{\sigma_q})^2 } ( -\log \sigma_q + \frac{1}{2} [ z^2 - (\frac{z-\mu_q}{\sigma_q})^2 ) dz \\
+=& E_q [-\log \sigma_q + \frac{1}{2} (Z^2 - (\frac{Z-\mu_q}{\sigma_q})^2) ] \\
+=& -\log \sigma_q + \frac{1}{2} E_q [Z^2] - \frac{1}{2\sigma_q^2} E_q [(Z-\mu_q)^2 ] \\
+=& -\log \sigma_q + \frac{\sigma_q^2 + \mu_q^2}{2} - \frac{1}{2} \\
+\end{align*}
 }
-
 
 \newcommand{\VAESolD}{
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%
-	%%.   YOUR SOLUTION FOR PROBLEM D BELOW THIS COMMENT
-	%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+We usually model $\sigma_z^2$ in log space because it lowers the computational cost of training and also improves the overall numerical stability.
 }
 
-\newcommand{\VAESolEa}{
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%
-	%%.   YOUR SOLUTION FOR PROBLEM E BELOW THIS COMMENT
-	%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\VAESolE}{
+We need the re-parameterization trick, because the loss is not differentiable when randomly sampling directly from the latent distribution. Instead we sample with $z=\mu + \sigma \epsilon$ where $\epsilon$ is random noise in the distribution $\mathcal{N}(0,1)$ to move the randomness outside of this step, making the function differentiable.
 
+Backprop cannot flow through a random node; ie. z is a random selection in the latent distribution. Introducing a new parameter $\epsilon$ allows us to re-parameterize z which allows back-propagation to flow to $\mu$ and $\sigma$.
 }
-
-
-\newcommand{\VAESolEb}{
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%
-	%%.   YOUR SOLUTION FOR PROBLEM E BELOW THIS COMMENT
-	%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-}
-
