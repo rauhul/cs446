@@ -1,53 +1,93 @@
 \newcommand{\GANStudSolA}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2cm}
+$$
+\min_\theta \max_w V(D_w, G_\theta) = \mathbb{E}_{x\sim p_{data}}[\log D_w(x)] + \mathbb{E}_{z\sim p_z(z)}[\log(1- G_\theta (D_w(x)))]
+$$
 }
 
 \newcommand{\GANStudSolB}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{3cm}
+$$
+\max_D V(D, G) = \int_{x}p_{data}(x)\log(D(x)) + p_{g}(x)\log(1 - D(x)) dx
+$$
 }
 
 \newcommand{\GANStudSolC}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{3cm}
+Because D(x) can be any function, we can maximize it point-wise using the Euler-Lagrange equation where:
+\begin{align*}
+L(x, D, \dot{D}) &= p_{data}(x)\log D(x) + p_{g}(x)\log (1-D(x)) \\
+\frac{\partial L(x, D, \dot{D}) }{\partial D} &= \frac{p_{data}(x)}{D(x)} - \frac{p_{g}(x)}{1-D(x)} \\
+\frac{\partial L(x, D, \dot{D}) }{\partial \dot{D}} &= 0
+\end{align*}
+Substituting into the Euler-Lagrange equation yields:
+\begin{align*}
+\frac{\partial L(x, D, \dot{D}) }{\partial D} + \frac{d}{dx} \frac{\partial L(x, D, \dot{D}) }{\partial \dot{D}} &= 0 \\
+\frac{p_{data}(x)}{D(x)} - \frac{p_{g}(x)}{1-D(x)}  &= 0 \\
+\frac{p_{data}(x)}{D(x)} &=  \frac{p_{g}(x)}{1-D(x)} \\
+p_{data}(x) - p_{data}(x)D(x) &= p_{g}(x)D(x) \\
+p_{g}(x)D(x) + p_{data}(x)D(x) &= p_{data}(x) \\
+D^*(x) &= \frac{p_{data}(x)}{p_{g}(x) + p_{data}(x)} \\
+\end{align*}
 }
 
 \newcommand{\GANStudSolD}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{5cm}
+For $p_{g}(x) = p_{data}(x), D^*(x) = \frac{1}{2}$, at this point:
+\begin{align*}
+C(G) &= V(D, G) = \mathbb{E}_{\mathbf{x}\sim p_{data}}\left[\log\frac{p_{data}(\mathbf{x})}{p_{data}(\mathbf{x})+p_g(\mathbf{x})}\right] + \mathbb{E}_{\mathbf{x}\sim p_g}\left[\log\frac{p_{data}(\mathbf{x})}{p_{data}(\mathbf{x})+p_g(\mathbf{x})}\right]\\
+&= \mathbb{E}_{\mathbf{x}\sim p_{data}}\left[\log\frac{1}{2}\right] + \mathbb{E}_{\mathbf{x}\sim p_g}\left[\log\frac{1}{2}\right] \\
+&= -\log 4
+\end{align*}
+This is a candidate value for the global minimum for C(G). \\
+
+Solving for $C(G) = V(D^*, G)$ yields:
+\begin{align*}
+C(G) &= \int_{x} p_{data}(x)\log \left (\frac{p_{data}(x)}{p_{g}(x)+p_{data}(x)} \right )  + p_g(x) \log\left ( \frac{p_{g}(x)}{p_{g}(x)+p_{data}(x)}\right ) \, \mathrm{d}x \\
+&= \int_{x} (\log2 -\log2)p_{data}(x) + p_{data}(x)\log \left (\frac{p_{data}(x)}{p_{G}(x)+p_{data}(x)} \right ) \\
+&\quad+(\log2 - \log2)p_G(x) + p_G(x) \log\left ( \frac{p_G(x)}{p_G(x)+p_{data}(x)}\right ) \, \mathrm{d}x \\
+C(G) &= - \log2\int_{x} p_{g}(x) + p_{data}(x)\, \mathrm{d}x \\
+&\quad+\int_{x}p_{data}(x)\left(\log2 + \log \left (\frac{p_{data}(x)}{p_{g}(x)+p_{data}(x)} \right ) \right)\mathrm{d}x \\
+&\quad+\int_{x}p_g(x)\left (\log2 + \log\left ( \frac{p_{g}(x)}{p_{g}(x)+p_{data}(x)}\right ) \right ) \, \mathrm{d}x
+\end{align*}
+Since the integral of a pdf over its support is always 1 the first term reduces to $-\log 4$, additionally using log properties we can reformulate the second and third terms into KL divergences.
+\begin{align*}
+C(G) &= - \log4\\
+&\quad + D_{KL}\left (p_{data}(x) \big |\big | \frac{p_{data}(x)+p_{g}(x)}{2} \right )\\
+&\quad + D_{KL}\left(p_{g}(x) \big |\big | \frac{p_{data}(x)+p_{g}(x)}{2}\right)
+\end{align*}
+These divergences actually form the Jensen-Shannon divergence:
+\begin{align*}
+C(G) &= - \log4\\
+&\quad + D_{KL}\left (p_{data}(x) \big |\big | \frac{p_{data}(x)+p_{g}(x)}{2} \right )\\
+&\quad + D_{KL}\left(p_{g}(x) \big |\big | \frac{p_{data}(x)+p_{g}(x)}{2}\right)
+\end{align*}
+$$
+C(G) = - \log4 + 2\cdot JSD \left (p_{data}(x) | p_{g}(x)\right )
+$$
+Since JSD between two distributions is always non-negative and zero only when the arguments are equal, the global minimum value of $C(G)$ is $-\log4$. The global minimum occurs iff is $p_{g}(x) = p_{data}(x)$ meaning $p_{G}^*(x) = p_{data}(x)$.
 }
 
 \newcommand{\GANStudSolE}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{5cm}
-}
-
-\newcommand{\GANStudSolF}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{1cm}
+\begin{align*}
+D_{KL}(U[0,1]||U[0.5,1.5]) &= -\int_x U[0,1] \log \frac{U[0.5,1.5]}{U[0,1]} dx\\
+&= \sum
+\begin{cases}
+-\int_{0}^{0.5} 1 \cdot \log 0\quad dx\\
+-\int_{0.5}^{1} 1 \cdot \log 1\quad dx\\
+-\int_{1}^{1.5} 0 \cdot \log \infty\quad dx\\
+\end{cases}\\
+&=\mathrm{undef} \\
+D_{KL}(U[0,1]||U[1,2]) &= -\int_x U[0,1] \log \frac{U[1,2]}{U[0,1]} dx\\
+&= \sum
+\begin{cases}
+-\int_{0}^{1} 1 \cdot \log 0\quad dx\\
+-\int_{1}^{2} 0 \cdot \log \infty\quad dx\\
+\end{cases}\\
+&=\mathrm{undef} \\
+\mathbb{W}_{1}(U[0,1]||U[0.5,1.5]) &= \int_{0}^{0.5} x dx + \int_{0.5}^{1} 0.5 dx +  \int_{1}^{0.5} 1.5-x dx\\
+&=\frac{x^2}{2}\bigg|_{0}^{0.5} + \frac{x}{2}\bigg|_{0.5}^{1}  +  (1.5x-\frac{x^2}{2}) \bigg|_{1}^{1.5} \\
+&=\frac{1}{8} + \left[\frac{1}{2}-\frac{1}{4}\right] + \left[\frac{9}{8}-\frac{8}{8}\right] \\
+&=\frac{1}{2} \\
+\mathbb{W}_{1}(U[0,1]||U[1,2]) &= \int_{0}^{1} x dx +  \int_{1}^{2} 2-x dx\\
+&=\frac{x^2}{2}\bigg|_{0}^{1}  +  (2x-\frac{x^2}{2}) \bigg|_{1}^{2} \\
+&=\frac{1}{2} +\left[(4-2)-(2-\frac{1}{2})\right] \\
+&=1
+\end{align*}
 }

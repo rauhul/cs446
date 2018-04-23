@@ -13,7 +13,20 @@
  \begin{enumerate}
 
  % Subproblem description
-\examproblempart{What is the cost function for classical GANs? Use $D_w(x)$ as the discriminator and  $G_{\theta}(x)$ as the generator.\\}
+\examproblempart{What is the cost function for classical GANs? Use $D_w(x)$ as the discriminator and  $G_{\theta}(z)$ as the generator, where the generator transforms $z \sim Z$ to $x \in X$.\\}
+
+\bookletskip{0.0}   %in inches
+
+% Solution box
+ \framebox[14.7cm][l]{
+ \begin{minipage}[b]{14.7cm}
+ \inbooklet{Your answer: \GANStudSolA}
+
+ \end{minipage}
+ }
+
+ % Subproblem description
+ \examproblempart{Assume arbitrary capacity for both discriminator and generator. In this case we refer to the discriminator using $D(x)$, and denote the distribution on the data domain induced by the generator via $p_G(x)$. State an equivalent problem to the one asked for in part (a), by using $p_G(x)$ and the ground truth data distribution $p_{data}(x)$.\\}
 
 \bookletskip{0.0}   %in inches
 
@@ -21,19 +34,6 @@
  \framebox[14.7cm][l]{
  \begin{minipage}[b]{14.7cm}
  \inbooklet{Your answer: \GANStudSolB}
-
- \end{minipage}
- }
-
- % Subproblem description
- \examproblempart{Assume arbitrary capacity for both discriminator and generator. In this case we refer to the discriminator using $D(x)$, and denote the distribution on the data domain induced by the generator via $p_G(x)$. State an equivalent problem to the one asked for in part (a), by using $p_G(x)$.\\}
-
-\bookletskip{0.0}   %in inches
-
-% Solution box
- \framebox[14.7cm][l]{
- \begin{minipage}[b]{14.7cm}
- \inbooklet{Your answer: \GANStudSolC}
 
  \end{minipage}
  }
@@ -54,7 +54,7 @@ where $\dot{D} = \partial D/\partial x$.
 % Solution box
  \framebox[14.7cm][l]{
  \begin{minipage}[b]{14.7cm}
- \inbooklet{Your answer: \GANStudSolD}
+ \inbooklet{Your answer: \GANStudSolC}
 
  \end{minipage}
  }
@@ -73,7 +73,7 @@ You may need the Jensen-Shannon divergence:
 % Solution box
  \framebox[14.7cm][l]{
  \begin{minipage}[b]{14.7cm}
- \inbooklet{Your answer: \GANStudSolE}
+ \inbooklet{Your answer: \GANStudSolD}
 
  \end{minipage}
  }
@@ -86,7 +86,7 @@ You may need the Jensen-Shannon divergence:
 % Solution box
  \framebox[14.7cm][l]{
  \begin{minipage}[b]{14.7cm}
- \inbooklet{Your answer: \GANStudSolF}
+ \inbooklet{Your answer: \GANStudSolE}
 
  \end{minipage}
  }
