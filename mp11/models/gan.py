@@ -66,11 +66,9 @@ class Gan(object):
               DO NOT USE AN ACTIVATION FUNCTION AT THE OUTPUT LAYER HERE.
         """
         with tf.variable_scope("discriminator", reuse=reuse) as scope:
-            d_full_1 = tf.nn.dropout(tf.layers.dense(x,            512, activation=tf.nn.leaky_relu, kernel_initializer=tf.random_normal_initializer(stddev=0.02)), 0.2)
-            d_full_2 = tf.nn.dropout(tf.layers.dense(d_full_1,     256, activation=tf.nn.leaky_relu, kernel_initializer=tf.random_normal_initializer(stddev=0.02)), 0.2)
-            d_batch_norm = tf.layers.batch_normalization(d_full_2)
-            d_full_3 = tf.layers.dense(d_batch_norm, 1, activation=None)
-            return d_full_3
+            d_full_1 = tf.nn.dropout(tf.layers.dense(x, 64, activation=tf.nn.leaky_relu, kernel_initializer=tf.random_normal_initializer(stddev=0.02)), 0.2)
+            d_full_2 = tf.layers.dense(d_full_1, 1, activation=None)
+            return d_full_2
 
     def _discriminator_loss(self, y, y_hat):
         """Loss for the discriminator.
@@ -100,10 +98,44 @@ class Gan(object):
             x_hat(tf.Tensor): Fake image G(z) (None, 784).
         """
         with tf.variable_scope("generator", reuse=reuse) as scope:
-            g_layer_1 = tf.nn.dropout(tf.layers.dense(z,         256, activation=tf.nn.leaky_relu, kernel_initializer=tf.random_normal_initializer(stddev=0.02)), 0.2)
-            g_layer_2 = tf.nn.dropout(tf.layers.dense(g_layer_1, 512, activation=tf.nn.leaky_relu, kernel_initializer=tf.random_normal_initializer(stddev=0.02)), 0.2)
-            g_layer_3 = tf.nn.dropout(tf.layers.dense(g_layer_2, 784, activation=tf.nn.leaky_relu, kernel_initializer=tf.random_normal_initializer(stddev=0.02)), 0.2)
-            return g_layer_3
+            g_full_1 = tf.layers.dense(z, 14*14*16, kernel_initializer=tf.random_normal_initializer(stddev=0.02))
+            g_full_1_norm = tf.layers.batch_normalization(g_full_1)
+            g_full_1_acti = tf.nn.leaky_relu(g_full_1_norm)
+
+
+            square = tf.reshape(g_full_1_acti, [-1, 14, 14, 16])
+            g_conv_1 = tf.layers.conv2d_transpose(
+                inputs=square,
+                filters=64,
+                strides=(2, 2),
+                kernel_size=[5, 5],
+                padding="same",
+            )
+            g_conv_1_norm = tf.layers.batch_normalization(g_conv_1)
+            g_conv_1_acti = tf.nn.leaky_relu(g_conv_1_norm)
+
+
+            g_conv_2 = tf.layers.conv2d_transpose(
+                inputs=g_conv_1_acti,
+                filters=64,
+                strides=(1, 1),
+                kernel_size=[5, 5],
+                padding="same",
+            )
+            g_conv_2_norm = tf.layers.batch_normalization(g_conv_2)
+            g_conv_2_acti = tf.nn.leaky_relu(g_conv_2_norm)
+
+
+            g_conv_3 = tf.layers.conv2d_transpose(
+                inputs=g_conv_2_acti,
+                filters=1,
+                strides=(1, 1),
+                kernel_size=[1, 1],
+                padding="same",
+            )
+            g_conv_3_acti = tf.nn.sigmoid(g_conv_3)
+            g_conv_3_flat = tf.layers.flatten(g_conv_3_acti)
+            return g_conv_3_flat
 
     def _generator_loss(self, y_hat):
         """Loss for the discriminator.

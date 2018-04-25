@@ -7,8 +7,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from models.gan import Gan
 
-def train(model, mnist_dataset, learning_rate=0.0001, batch_size=32,
-          num_steps=800, nlatent=2, epoch=0):
+def train(model, mnist_dataset, learning_rate=0.0001, decay=0.9999, batch_size=64,
+          num_steps=500, nlatent=2, epoch=0):
     """Implements the training loop of stochastic gradient descent.
 
     Performs stochastic gradient descent with the indicated batch_size and
@@ -21,8 +21,11 @@ def train(model, mnist_dataset, learning_rate=0.0001, batch_size=32,
         batch_size(int): batch size used for training.
         num_steps(int): Number of steps to run the update ops.
     """
-    d_iters = 1
-    g_iters = 8
+
+    learning_rate = learning_rate * decay**epoch
+
+    d_iters = 3
+    g_iters = 1
     for step in range(num_steps):
         for _ in range(d_iters):
             batch_x, _ = mnist_dataset.train.next_batch(batch_size)
@@ -47,7 +50,6 @@ def train(model, mnist_dataset, learning_rate=0.0001, batch_size=32,
             )
 
         if step % 100 == 0:
-            summary = model.summary_op
             batch_x, _ = mnist_dataset.train.next_batch(batch_size)
             summary = model.session.run(
                 model.summary_op,
@@ -86,7 +88,7 @@ def main(_):
     """
     # Get dataset.
     mnist_dataset = input_data.read_data_sets('MNIST_data', one_hot=True)
-    nlatent = 2
+    nlatent = 14
 
     # Build model.
     model = Gan(nlatent=nlatent)
