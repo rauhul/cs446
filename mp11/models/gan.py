@@ -66,8 +66,32 @@ class Gan(object):
               DO NOT USE AN ACTIVATION FUNCTION AT THE OUTPUT LAYER HERE.
         """
         with tf.variable_scope("discriminator", reuse=reuse) as scope:
-            d_full_1 = tf.nn.dropout(tf.layers.dense(x, 64, activation=tf.nn.leaky_relu, kernel_initializer=tf.random_normal_initializer(stddev=0.02)), 0.2)
-            d_full_2 = tf.layers.dense(d_full_1, 1, activation=None)
+            x_squa = tf.reshape(x, [-1, 28, 28, 1])
+
+            d_conv_1 = tf.layers.conv2d(
+                inputs=x_squa,
+                filters=64,
+                kernel_size=[5, 5],
+                padding="same",
+                activation=tf.nn.leaky_relu
+            )
+
+            d_conv_2 = tf.layers.conv2d(
+                inputs=d_conv_1,
+                filters=32,
+                strides=(2, 2),
+                kernel_size=[3, 3],
+                padding="same",
+                activation=tf.nn.leaky_relu
+            )
+
+            d_conv_2_flat = tf.reshape(d_conv_2, [-1, 7 * 7 * 32])
+
+            d_full_1      = tf.layers.dense(d_conv_2_flat, 256, kernel_initializer=tf.random_normal_initializer(stddev=0.02))
+            d_full_1_norm = tf.layers.batch_normalization(d_full_1)
+            d_full_1_acti = tf.nn.leaky_relu(d_full_1_norm)
+
+            d_full_2      = tf.layers.dense(d_full_1_acti, 1, kernel_initializer=tf.random_normal_initializer(stddev=0.02))
             return d_full_2
 
     def _discriminator_loss(self, y, y_hat):
@@ -101,11 +125,10 @@ class Gan(object):
             g_full_1 = tf.layers.dense(z, 14*14*16, kernel_initializer=tf.random_normal_initializer(stddev=0.02))
             g_full_1_norm = tf.layers.batch_normalization(g_full_1)
             g_full_1_acti = tf.nn.leaky_relu(g_full_1_norm)
+            g_full_1_squa = tf.reshape(g_full_1_acti, [-1, 14, 14, 16])
 
-
-            square = tf.reshape(g_full_1_acti, [-1, 14, 14, 16])
             g_conv_1 = tf.layers.conv2d_transpose(
-                inputs=square,
+                inputs=g_full_1_squa,
                 filters=64,
                 strides=(2, 2),
                 kernel_size=[5, 5],
@@ -117,13 +140,13 @@ class Gan(object):
 
             g_conv_2 = tf.layers.conv2d_transpose(
                 inputs=g_conv_1_acti,
-                filters=64,
+                filters=32,
                 strides=(1, 1),
-                kernel_size=[5, 5],
+                kernel_size=[3, 3],
                 padding="same",
             )
             g_conv_2_norm = tf.layers.batch_normalization(g_conv_2)
-            g_conv_2_acti = tf.nn.leaky_relu(g_conv_2_norm)
+            g_conv_2_acti = tf.nn.sigmoid(g_conv_2_norm)
 
 
             g_conv_3 = tf.layers.conv2d_transpose(
@@ -135,6 +158,8 @@ class Gan(object):
             )
             g_conv_3_acti = tf.nn.sigmoid(g_conv_3)
             g_conv_3_flat = tf.layers.flatten(g_conv_3_acti)
+
+
             return g_conv_3_flat
 
     def _generator_loss(self, y_hat):

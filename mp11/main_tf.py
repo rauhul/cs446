@@ -7,8 +7,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from models.gan import Gan
 
-def train(model, mnist_dataset, learning_rate=0.0001, decay=0.9999, batch_size=64,
-          num_steps=500, nlatent=2, epoch=0):
+def train(model, mnist_dataset, learning_rate=0.0001, decay=0.95, batch_size=64,
+          num_steps=5000, nlatent=2, epoch=0):
     """Implements the training loop of stochastic gradient descent.
 
     Performs stochastic gradient descent with the indicated batch_size and
@@ -24,7 +24,7 @@ def train(model, mnist_dataset, learning_rate=0.0001, decay=0.9999, batch_size=6
 
     learning_rate = learning_rate * decay**epoch
 
-    d_iters = 3
+    d_iters = 5
     g_iters = 1
     for step in range(num_steps):
         for _ in range(d_iters):
@@ -51,18 +51,19 @@ def train(model, mnist_dataset, learning_rate=0.0001, decay=0.9999, batch_size=6
 
         if step % 100 == 0:
             batch_x, _ = mnist_dataset.train.next_batch(batch_size)
-            summary = model.session.run(
-                model.summary_op,
+            d_loss, g_loss = model.session.run(
+                [model.d_loss, model.g_loss],
                 feed_dict={
                     model.x_placeholder: batch_x,
                     model.z_placeholder: np.random.uniform(-1,1,[batch_size,nlatent]),
                     model.learning_rate_placeholder: learning_rate
                 }
             )
-            model.writer.add_summary(summary, step + epoch * num_steps)
+            print('Iter [%8d] d_loss [%.4f] g_loss [%.4f]' % (step, d_loss, g_loss))
+
 
 def generate_image(model, nlatent=2):
-    n_images = 5
+    n_images = 6
     x_z = np.linspace(-1, 1, n_images)
     y_z = np.linspace(-1, 1, n_images)
 
@@ -88,13 +89,13 @@ def main(_):
     """
     # Get dataset.
     mnist_dataset = input_data.read_data_sets('MNIST_data', one_hot=True)
-    nlatent = 14
+    nlatent = 8
 
     # Build model.
     model = Gan(nlatent=nlatent)
 
     # Start training.
-    for i in range(10):
+    for i in range(100):
         print("epoch", i)
         train(model, mnist_dataset, nlatent=nlatent, epoch=i)
 
