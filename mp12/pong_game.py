@@ -30,9 +30,9 @@ font = pygame.font.SysFont("calibri",40)
 
 # Variable initialization.
 ai_speed = 15.
-HIT_REWARD = 0
-LOSE_REWARD = -1
-SCORE_REWARD = 1
+HIT_REWARD = 1
+LOSE_REWARD = -10
+SCORE_REWARD = 10
 
 class GameState:
     """ The pong game."""

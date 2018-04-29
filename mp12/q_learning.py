@@ -117,7 +117,6 @@ def get_action_index(readout_t, epsilon, t):
     Returns:
         index: the index of the action to be taken next.
     """
-    print(readout_t)
 
     if t<OBSERVE:
         return random.randint(0, len(readout_t) - 1)
@@ -139,7 +138,7 @@ def scale_down_epsilon(epsilon, t):
         the updated epsilon
     """
 
-    if epsilon>FINAL_EPSILON:
+    if epsilon>FINAL_EPSILON and t>OBSERVE:
         epsilon -= ((INITIAL_EPSILON - FINAL_EPSILON) / EXPLORE)
     return epsilon
 
@@ -326,7 +325,9 @@ def trainNetwork(s, readout, sess):
             state = "explore"
         else:
             state = "train"
-        print("TIMESTEP", t, "/ STATE", state, "/ EPSILON", epsilon, "/ ACTION", action_index, "/ REWARD", r_t, "/ Q_MAX %e" % np.max(readout_t))
+
+        if t % 10 == 0:
+            print("TIMESTEP", t, "/ STATE", state, "/ EPSILON", epsilon, "/ ACTION", action_index, "/ REWARD", r_t, "/ Q_MAX %e" % np.max(readout_t))
 
 
 def playGame():
