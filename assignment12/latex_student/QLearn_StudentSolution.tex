@@ -1,44 +1,68 @@
 \newcommand{\QLearnStudSolA}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{3cm}
+$$
+Q^*(s,a)=\sum_{s'\in \mathcal{S}}P(s'|s, a) \left[R(s,a,s')+\max_{a'\in\mathcal{A}_{s'}}Q^*(s',a') \right]
+$$
 }
 
 \newcommand{\QLearnStudSolB}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{3cm}
+$$
+Q(s,a)\leftarrow(1-\alpha)Q(s,a)+\alpha\left(r+\gamma*\max_{a'\in\mathcal{A}}Q(s',a') \right)
+$$
 }
 
 \newcommand{\QLearnStudSolC}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2cm}
+
+The advantage of the epsilon-greedy strategy is that it prevents the model from falling into a suboptimal strategy by selecting a random action with some probability $\epsilon$ on every step.
 }
 
 \newcommand{\QLearnStudSolD}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{2cm}
+
+Replay-memory or experience-replay is a technique that uses a random sample of prior actions instead of the most recent action on the update step. This process removes correlations in the exploration/observation sequence and smooths changes in the data distribution.
 }
 
 \newcommand{\QLearnStudSolE}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%.   YOUR SOLUTION FOR PROBLEM A BELOW THIS COMMENT
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{9cm}
+\begin{align*}
+& S_{1}; \space R=-10; \space a_{1}:S_{1}\rightarrow S_{1} \\
+Q(s_1,a_1)&\leftarrow\frac{1}{2}*0 + \frac{1}{2}\left(-10+\frac{1}{2}*\max\{0,0\}\right) \\
+&\leftarrow -5 \\
+&\begin{tabular}{|c c c|}
+\hline
+$Q$ & $S_{1}$ & $S_{2}$  \\ \hline
+$a_{1}$&-5&0\\ \hline
+$a_{2}$&0&0\\ \hline
+\end{tabular} \\
+\\
+& S_{1}; \space R=-10; \space a_{2}:S_{1}\rightarrow S_{2} \\
+Q(s_1,a_2)&\leftarrow\frac{1}{2}*0 + \frac{1}{2}\left(-10+\frac{1}{2}*\max\{0,0\}\right) \\
+&\leftarrow -5 \\
+&\begin{tabular}{|c c c|}
+\hline
+$Q$ & $S_{1}$ & $S_{2}$  \\ \hline
+$a_{1}$&-5&0\\ \hline
+$a_{2}$&-5&0\\ \hline
+\end{tabular} \\
+\\
+& S_{2}; \space R=18.5; \space a_{1}:S_{2}\rightarrow S_{1} \\
+Q(s_2,a_1)&\leftarrow\frac{1}{2}*0 + \frac{1}{2}\left(18.5+\frac{1}{2}*\max\{-5,-5\}\right) \\
+&\leftarrow 8 \\
+&\begin{tabular}{|c c c|}
+\hline
+$Q$ & $S_{1}$ & $S_{2}$  \\ \hline
+$a_{1}$&-5&8\\ \hline
+$a_{2}$&-5&0\\ \hline
+\end{tabular} \\
+\\
+& S_{1}; \space R=-10; \space a_{2}:S_{1}\rightarrow S_{2} \\
+Q(s_1,a_2)&\leftarrow\frac{1}{2}*-5 + \frac{1}{2}\left(-10+\frac{1}{2}*\max\{8,0\}\right) \\
+&\leftarrow -5.5 \\
+&\begin{tabular}{|c c c|}
+\hline
+$Q$ & $S_{1}$ & $S_{2}$  \\ \hline
+$a_{1}$&-5&8\\ \hline
+$a_{2}$&-5.5&0\\ \hline
+\end{tabular} \\
+\\
+&\text{Optimal Policy} \\
+& S_1: a_1; \quad S_2: a_1
+\end{align*}
 }
