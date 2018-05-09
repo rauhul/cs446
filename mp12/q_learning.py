@@ -159,7 +159,7 @@ def run_selected_action(a_t, s_t, game_state):
     x_t1, r_t, terminal = game_state.frame_step(a_t)
     x_t1 = cv2.cvtColor(cv2.resize(x_t1, (80, 80)), cv2.COLOR_BGR2GRAY)
     ret, x_t1 = cv2.threshold(x_t1, 1, 255, cv2.THRESH_BINARY)
-    s_t1 = np.stack((s_t[:,:,2], s_t[:,:,1], s_t[:,:,0], x_t1), axis=2)
+    s_t1 = np.stack((s_t[:,:,1], s_t[:,:,2], s_t[:,:,3], x_t1), axis=2)
 
     return s_t1, r_t, terminal
 
